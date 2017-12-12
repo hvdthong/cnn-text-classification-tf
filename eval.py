@@ -26,7 +26,6 @@ tf.flags.DEFINE_boolean("eval_train", False, "Evaluate on all training data")
 tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
 tf.flags.DEFINE_boolean("log_device_placement", False, "Log placement of ops on devices")
 
-
 FLAGS = tf.flags.FLAGS
 FLAGS._parse_flags()
 print("\nParameters:")
@@ -55,8 +54,8 @@ checkpoint_file = tf.train.latest_checkpoint(FLAGS.checkpoint_dir)
 graph = tf.Graph()
 with graph.as_default():
     session_conf = tf.ConfigProto(
-      allow_soft_placement=FLAGS.allow_soft_placement,
-      log_device_placement=FLAGS.log_device_placement)
+        allow_soft_placement=FLAGS.allow_soft_placement,
+        log_device_placement=FLAGS.log_device_placement)
     sess = tf.Session(config=session_conf)
     with sess.as_default():
         # Load the saved meta graph and restore variables
@@ -85,7 +84,7 @@ with graph.as_default():
 if y_test is not None:
     correct_predictions = float(sum(all_predictions == y_test))
     print("Total number of test examples: {}".format(len(y_test)))
-    print("Accuracy: {:g}".format(correct_predictions/float(len(y_test))))
+    print("Accuracy: {:g}".format(correct_predictions / float(len(y_test))))
 
 # Save the evaluation to a csv
 predictions_human_readable = np.column_stack((np.array(x_raw), all_predictions))

@@ -168,6 +168,7 @@ with tf.Graph().as_default():
                 feed_dict)
             time_str = datetime.datetime.now().isoformat()
             print("{}: step {}, loss {:g}, acc {:g}".format(time_str, step, loss, accuracy))
+            dev_summary_writer.add_summary(summaries, step)
             if writer:
                 writer.add_summary(summaries, step)
 

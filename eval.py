@@ -98,4 +98,3 @@ print("Saving evaluation to {0}".format(out_path))
 with open(out_path, 'w') as f:
     csv.writer(f).writerows(predictions_human_readable)
 
-print "hello"

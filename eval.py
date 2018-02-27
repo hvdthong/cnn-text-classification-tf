@@ -20,7 +20,7 @@ tf.flags.DEFINE_string("negative_data_file", "./data/rt-polaritydata/rt-polarity
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 32, "Batch Size (default: 64)")
 tf.flags.DEFINE_string("checkpoint_dir", "./runs/1518170880/checkpoints", "Checkpoint directory from training run")
-tf.flags.DEFINE_boolean("eval_train", False, "Evaluate on all training data")
+tf.flags.DEFINE_boolean("eval_train", True, "Evaluate on all training data")
 
 # Misc Parameters
 tf.flags.DEFINE_boolean("allow_soft_placement", True, "Allow device soft device placement")
@@ -52,8 +52,8 @@ print("\nEvaluating...\n")
 # ==================================================
 checkpoint_dir = "./runs/1518170880/checkpoints"
 checkpoint_file = tf.train.latest_checkpoint(checkpoint_dir)
-# checkpoint_files = tf.train.get_checkpoint_state(checkpoint_dir + "/checkpoint")
 # print checkpoint_file
+# checkpoint_files = tf.train.get_checkpoint_state(checkpoint_dir + "/checkpoint")
 # print checkpoint_files
 # exit()
 graph = tf.Graph()

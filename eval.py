@@ -19,7 +19,7 @@ tf.flags.DEFINE_string("negative_data_file", "./data/rt-polaritydata/rt-polarity
 
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 32, "Batch Size (default: 64)")
-tf.flags.DEFINE_string("checkpoint_dir", "", "Checkpoint directory from training run")
+tf.flags.DEFINE_string("checkpoint_dir", "./runs/1518170880/checkpoints", "Checkpoint directory from training run")
 tf.flags.DEFINE_boolean("eval_train", False, "Evaluate on all training data")
 
 # Misc Parameters
@@ -50,7 +50,12 @@ print("\nEvaluating...\n")
 
 # Evaluation
 # ==================================================
-checkpoint_file = tf.train.latest_checkpoint(FLAGS.checkpoint_dir)
+checkpoint_dir = "./runs/1518170880/checkpoints"
+checkpoint_file = tf.train.latest_checkpoint(checkpoint_dir)
+# checkpoint_files = tf.train.get_checkpoint_state(checkpoint_dir + "/checkpoint")
+# print checkpoint_file
+# print checkpoint_files
+# exit()
 graph = tf.Graph()
 with graph.as_default():
     session_conf = tf.ConfigProto(

@@ -52,7 +52,7 @@ print("\nEvaluating...\n")
 # ==================================================
 checkpoint_dir = "./runs/1518170880/checkpoints"
 checkpoint_file = tf.train.latest_checkpoint(checkpoint_dir)
-# print checkpoint_file
+print checkpoint_file
 # checkpoint_files = tf.train.get_checkpoint_state(checkpoint_dir + "/checkpoint")
 # print checkpoint_files
 # exit()
@@ -84,6 +84,12 @@ with graph.as_default():
         for x_test_batch in batches:
             batch_predictions = sess.run(predictions, {input_x: x_test_batch, dropout_keep_prob: 1.0})
             all_predictions = np.concatenate([all_predictions, batch_predictions])
+
+        word_embedding = graph.get_operation_by_name("embedding/W").outputs[0]
+        word_vec = sess.run(word_embedding)
+        print "Word embedding:", word_vec.shape
+        exit()
+
 
 # Print accuracy if y_test is defined
 if y_test is not None:
